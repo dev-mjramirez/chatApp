@@ -2,26 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mj.ramirez.chatapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true">
         <activity
-            android:name=".IndexActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Activity.IndexActivity"
+            android:theme="@style/CustomTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".ChatActivity" />
+        <activity android:name=".Activity.LoginActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".Activity.SignUpActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".Activity.ChatActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".CustomView.ChatCustomHeaderTitle"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

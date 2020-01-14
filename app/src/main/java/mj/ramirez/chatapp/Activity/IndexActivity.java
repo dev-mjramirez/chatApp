@@ -1,13 +1,13 @@
-package mj.ramirez.chatapp;
+package mj.ramirez.chatapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mj.ramirez.chatapp.R;
 
 public class IndexActivity extends AppCompatActivity {
 
@@ -20,11 +20,11 @@ public class IndexActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSignup)
     void login(){
-        startActivity(new Intent(this,LoginActivity.class));
+        startActivity(new Intent(this,SignUpActivity.class));
     }
 
     @OnClick(R.id.btnLogin)
     void signup(){
-        startActivity(new Intent(this,SignUpActivity.class));
+        startActivity(new Intent(this,LoginActivity.class));
     }
 }
