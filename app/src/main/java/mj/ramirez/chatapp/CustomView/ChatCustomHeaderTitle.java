@@ -1,13 +1,17 @@
 package mj.ramirez.chatapp.CustomView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Objects;
 
+import mj.ramirez.chatapp.Activity.LoginActivity;
 import mj.ramirez.chatapp.R;
 
 public class ChatCustomHeaderTitle extends AppCompatActivity implements View.OnClickListener {
@@ -40,7 +44,10 @@ public class ChatCustomHeaderTitle extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnLogout) {
-            finish();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(this, LoginActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            overridePendingTransition(R.anim.reverseexit, R.anim.reverseenter);
         }
     }
 }

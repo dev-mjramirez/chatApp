@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "442571401990-gq8pt0dp6tci8ncmhb2iftnj12k8e7nf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mj.ramirez.chatapp",
+            "certificate_hash": "97a86a9d23856cb319c040d15d5c0660757e9655"
+          }
+        },
+        {
           "client_id": "442571401990-9jmc7i0iabtlh980udfkjgnqnhg661ev.apps.googleusercontent.com",
           "client_type": 3
         }
