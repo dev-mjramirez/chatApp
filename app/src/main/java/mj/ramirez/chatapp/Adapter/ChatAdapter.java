@@ -29,7 +29,10 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     public void setList(ArrayList<ChatMessage> list){
-        items = list;
+        items.clear();
+        for (int i=(list.size()); i > 0; i--){
+            items.add(list.get(i-1));
+        }
     }
 
     @Override
@@ -73,9 +76,11 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             if (Objects.requireNonNull(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())
                     .equalsIgnoreCase(items.get(position).getMessageUser())) {
                 holder.rlSender.setVisibility(View.GONE);
+                holder.rlYou.setVisibility(View.VISIBLE);
                 holder.tvMessage2.setText(items.get(position).getMessageText());
             } else {
                 holder.rlYou.setVisibility(View.GONE);
+                holder.rlSender.setVisibility(View.VISIBLE);
                 holder.tvMessage.setText(items.get(position).getMessageText());
                 holder.tvSender.setText(items.get(position).getMessageUser());
             }

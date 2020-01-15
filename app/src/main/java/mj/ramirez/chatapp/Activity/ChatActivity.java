@@ -32,7 +32,6 @@ public class ChatActivity extends ChatCustomHeaderTitle {
     private RelativeLayout emptyResult;
     private ChatAdapter chatAdapter;
     private List<ChatMessage> results = new ArrayList<>();
-    private List<ChatMessage> sortByDesc = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,34 +72,22 @@ public class ChatActivity extends ChatCustomHeaderTitle {
     void send(){
         FirebaseDatabase.getInstance().getReference().push()
                 .setValue(new ChatMessage(etMessage.getText().toString(),
-                        Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()))
-                .addOnCompleteListener(task -> {
-                    if (task.isComplete()) {
-                        etMessage.setText("");
-                        displayChatMessage();
-                    }
-                });
+                        Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail()));
+        displayChatMessage();
     }
 
     private void displayChatMessage(){
-        FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
+        etMessage.setText("");
+        FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 results.clear();
                 for (DataSnapshot data : dataSnapshot.getChildren()){
-                    ChatMessage chatMessage = new ChatMessage();
-                    chatMessage.setMessageText(Objects.requireNonNull(data.getValue(ChatMessage.class)).getMessageText());
-                    chatMessage.setMessageTime(Objects.requireNonNull(data.getValue(ChatMessage.class)).getMessageTime());
-                    chatMessage.setMessageUser(Objects.requireNonNull(data.getValue(ChatMessage.class)).getMessageUser());
+                    ChatMessage chatMessage = data.getValue(ChatMessage.class);
                     results.add(chatMessage);
                 }
-                sortByDesc.clear();
-                for (int i=(results.size()); i > 0; i--){
-                    ChatMessage chatMessage = results.get(i-1);
-                    sortByDesc.add(chatMessage);
-                }
 
-                chatAdapter.setList(new ArrayList<>(sortByDesc));
+                chatAdapter.setList(new ArrayList<>(results));
                 chatAdapter.notifyDataSetChanged();
             }
 
