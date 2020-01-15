@@ -7,8 +7,6 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +40,7 @@ public class ChatActivity extends ChatCustomHeaderTitle {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
 
-        rvChat = (RecyclerViewEmptySupport) findViewById(R.id.rv);
+        rvChat = findViewById(R.id.rv);
         emptyResult = findViewById(R.id.noResult);
 
         setRecyclerNotificationAdapter();
@@ -97,8 +95,8 @@ public class ChatActivity extends ChatCustomHeaderTitle {
                     results.add(chatMessage);
                 }
                 sortByDesc.clear();
-                for (int i=(results.size() - 1); i > 0; i--){
-                    ChatMessage chatMessage = results.get(i);
+                for (int i=(results.size()); i > 0; i--){
+                    ChatMessage chatMessage = results.get(i-1);
                     sortByDesc.add(chatMessage);
                 }
 
