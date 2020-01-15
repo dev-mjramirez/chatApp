@@ -41,7 +41,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         private RelativeLayout rlSender, rlYou;
         private TextView tvMessage, tvSender;
-        private TextView tvMessage2, tvYou;
+        private TextView tvMessage2;
 
         ViewHolder(View view) {
             super(view);
@@ -52,7 +52,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
             rlYou = view.findViewById(R.id.rlYou);
             tvMessage2 = view.findViewById(R.id.tvMessage2);
-            tvYou = view.findViewById(R.id.tvYou);
 
         }
     }
@@ -75,7 +74,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     .equalsIgnoreCase(items.get(position).getMessageUser())) {
                 holder.rlSender.setVisibility(View.GONE);
                 holder.tvMessage2.setText(items.get(position).getMessageText());
-                holder.tvYou.setText(items.get(position).getMessageUser());
             } else {
                 holder.rlYou.setVisibility(View.GONE);
                 holder.tvMessage.setText(items.get(position).getMessageText());
